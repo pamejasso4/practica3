@@ -1,23 +1,25 @@
-import java.sql.Date;
+import java.util.Date;
 
 public class Cuenta {
-    private int id = 0;
-    private double balance = 0;
-    private double annualInterestRate = 0;
+    private int id;
+    private double balance;
+    private double annualInterestRate;
     private Date dateCreated;
-    private double cantidad;
+    
 
 
-    public void CrearCuenta(){
+    public Cuenta(){
         this.id = 0;
         this.balance = 0;
         this.annualInterestRate = 0;
-        this.dateCreated = newDate();
+        this.dateCreated = new Date();
 
     }
-    public void cuenta(int id, double balance){
-     this.id = 0;
-     this.balance = 0;
+    public Cuenta(int id, double balance){
+     this.id = id;
+     this.balance = balance;
+     this.annualInterestRate= 0;
+     this.dateCreated = new Date();
     }
 
     public int getId(){
@@ -28,6 +30,23 @@ public class Cuenta {
         this.id = id;
     }
 
+    public double getBalance(){
+        return balance;
+    }
+
+    public void setBalance(double balance){
+        this.balance = balance; 
+    }
+
+    public double getAnnualInterestRate(){
+        return annualInterestRate;
+
+    }
+
+    public void setAnnualInterestRate(double annualInterestRate){
+        this.annualInterestRate = annualInterestRate;
+    }
+
 
     public Date getdateCreated(){
         return dateCreated;
@@ -35,22 +54,20 @@ public class Cuenta {
     }
 
     public double getMonthlyInterestRate(){
-        return getMonthlyInterestRate();
+        return (annualInterestRate/100) /12 ;
     }
 
-    public String getMonthlyInterest(){
-        return (balance * annualInterestRate/12)/100 + "%";
+    public double getMonthlyInterest(){
+        return balance * getMonthlyInterestRate();
     }
 
-    public double getwithdraw(){
-        return cantidad;
-    }
-
-    public double deposit(){
-        return cantidad = 3000;
-
+    public void withdraw(double amount){
+        balance -=amount;
 
     }
 
+    public void deposit(double amount){
+        balance += amount;
+    }
 
 }
